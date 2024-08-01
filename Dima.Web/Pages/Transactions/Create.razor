@@ -1,0 +1,25 @@
+﻿@page "/lancamentos/criar"
+
+
+<MudText Typo="Typo.h3">Novo Lançamento</MudText>
+<MudPaper Class="pa-8 mt-4">
+    <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+        <DataAnnotationsValidator />
+        <MudTextField Label="Titulo" HelperText="Campo obrigatório" @bind-Value="InputModel.Title" For="@(() => InputModel.Title)" />
+        <MudTextField Label="Quanto?" T="Decimal" Format="C" HelperText="Informe o valor de Entrada/Saida" @bind-Value="InputModel.Amount" For="@(() => InputModel.Amount)" />
+        <MudDatePicker Label="Quando?" @bind-Date="@InputModel.PaidOrReceivedAt" HelperText="Selecione a data em que o valor será pago ou recebido."/>
+        <MudSelect T="ETransactionType" Label="Tipo de movimentação" AnchorOrigin="Origin.BottomCenter" @bind-Value="InputModel.Type">
+            <MudSelectItem T="ETransactionType" Value="ETransactionType.Deposit">Entrada</MudSelectItem>
+            <MudSelectItem T="ETransactionType" Value="ETransactionType.Withdraw">Saida</MudSelectItem>
+        </MudSelect>
+        <MudSelect T="long" Label="Categoria" @bind-Value="@InputModel.CategoryId" AnchorOrigin="Origin.BottomCenter">
+            @foreach(var category in Categories)
+            {
+                <MudSelectItem T="long" Value="@category.Id">@category.Title</MudSelectItem>
+            }
+        </MudSelect>
+        <MudButton Class="mt-4" ButtonType="ButtonType.Submit" Variant="Variant.Outlined" Color=Color.Primary>
+            Realizar Lançamento
+        </MudButton>
+    </EditForm>
+</MudPaper>

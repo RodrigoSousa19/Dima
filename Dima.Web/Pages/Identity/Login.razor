@@ -1,0 +1,46 @@
+﻿@page "/login"
+@layout HeadlessLayout
+
+<PageTitle>Dima - Entrar</PageTitle>
+
+<MudGrid Justify="Justify.Center">
+    <MudItem xs="12" sm="12" md="8" lg="6" xl="6" xxl="6">
+        <MudPaper Class="mud-width-full pa-8">
+            <div class="d-flex justify-center pb-8 pt-8">
+                <img src="images/dima.png"
+                     alt="Dima - Controle Financeiro"
+                     width="200" />
+            </div>
+
+            <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+                <DataAnnotationsValidator />
+
+                <MudTextField T="string"
+                              Label="Email"
+                              HelperText="Campo obrigatório"
+                              InputType="InputType.Email"
+                              @bind-Value="@InputModel.Email"
+                              For="@(() => InputModel.Email)" />
+                <MudTextField T="string"
+                              Label="Senha"
+                              HelperText="Campo obrigatório"
+                              InputType="InputType.Password"
+                              @bind-Value="@InputModel.Password"
+                              For="@(() => InputModel.Password)" />
+
+                <div class="d-flex mt-8">
+                    @if (IsBusy)
+                    {
+                        <MudProgressCircular Color="Color.Info" Indeterminate="true" />
+                    }
+                    else
+                    {
+                        <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary">Entrar</MudButton>
+                        <MudSpacer />
+                        <MudButton Variant="Variant.Outlined" Color="Color.Secondary" Href="/register">Registrar-se</MudButton>
+                    }
+                </div>
+            </EditForm>
+        </MudPaper>
+    </MudItem>
+</MudGrid>

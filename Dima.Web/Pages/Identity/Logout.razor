@@ -1,0 +1,19 @@
+﻿@page "/logout"
+@layout HeadlessLayout
+
+<PageTitle>Dima - Sair</PageTitle>
+
+<MudText Typo="Typo.h3">Finalizando Sessão...</MudText>
+<MudPaper Class="pa-8 mt-4">
+    <div class="d-flex justify-center pb-8 pt-8">
+        <img src="/Images/dima.png" alt="Dima - Seu Controle Financeiro" width="250" />
+    </div>
+    <MudAlert Severity="Severity.Info">
+        <div>
+            <p>Sessão Finalizada...</p>
+            <MudButton Variant="Variant.Outlined" Color="Color.Tertiary" Href="/">
+                Ir para a tela de login
+            </MudButton>
+        </div>
+    </MudAlert>
+</MudPaper>
